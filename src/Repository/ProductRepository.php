@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Model\SearchProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -17,7 +18,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginator)
     {
         parent::__construct($registry, Product::class);
     }
@@ -29,6 +30,7 @@ class ProductRepository extends ServiceEntityRepository
             $query->andWhere('c IN (:categories)')
                 ->setParameter('categories', $searchData->categories);
         }
-        return $query->getQuery()->getResult();
+        $query = $query->getQuery();
+        return $this->paginator->paginate($query, $searchData->page, 10);
     }
 }

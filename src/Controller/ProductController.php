@@ -22,6 +22,7 @@ class ProductController extends AbstractController
         $searchData = new SearchProduct();
         $form = $this->createForm(SearchProductForm::class, $searchData);
         $form->handleRequest($request);
+        $searchData->page = $request->get('page', 1);
         $product = $productRepository->findSearch($searchData);
         return $this->render('product/index.html.twig', [
             'products' => $product,
