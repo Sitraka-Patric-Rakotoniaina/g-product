@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Liste des produit{% endblock %}
 
 {% block body %}
 <div class="mx-auto col-10 col-md-8 col-lg-6">
     <h4>Liste des produits</h4>
     <hr>
+    <div class="d-flex justify-content-end">
+        <a href="{{ path('app_product_new') }}"><button class="btn btn-sm btn-primary">Ajouter un nouveau produit</button></a>
+    </div>
     <table class="table">
         <thead>
         <tr>
             <th>#</th>
             <th class="w-auto">Nom</th>
             <th class="text-center">Quantité</th>
+            <th class="text-center">Categorie</th>
             <th class="text-center">Prix</th>
             <th></th>
         </tr>
@@ -22,6 +26,7 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td class="text-center">{{ product.quantity }}</td>
+                <td class="text-center">{{ product.category.name }}</td>
                 <td class="text-center">
                     <span class="text-info">{{ product.price }}</span>
                 </td>
