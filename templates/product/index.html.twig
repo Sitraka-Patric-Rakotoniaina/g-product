@@ -3,44 +3,57 @@
 {% block title %}Liste des produit{% endblock %}
 
 {% block body %}
-<div class="mx-auto col-10 col-md-8 col-lg-6">
-    <h4>Liste des produits</h4>
-    <hr>
-    <div class="d-flex justify-content-end">
-        <a href="{{ path('app_product_new') }}"><button class="btn btn-sm btn-primary">Ajouter un nouveau produit</button></a>
+    <div class="container">
+        <div class="row">
+            <h4 class="text-center">Liste des produits</h4>
+            <div class="row">
+                <div class="d-flex justify-content-end">
+                    <a href="{{ path('app_product_new') }}">
+                        <button class="btn btn-sm btn-secondary">Ajouter un nouveau produit</button>
+                    </a>
+                </div>
+            </div>
+            <hr class="mt-2">
+            <div class="row">
+                <div class="col-md-2">
+                    {% include('product/form/search_form.html.twig') with {form: searchForm} only %}
+                </div>
+                <div class="col-md-10">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="w-auto">Nom</th>
+                            <th class="text-center">Quantité</th>
+                            <th class="text-center">Categorie</th>
+                            <th class="text-center">Prix</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.name }}</td>
+                                <td class="text-center">{{ product.quantity }}</td>
+                                <td class="text-center">{{ product.category.name }}</td>
+                                <td class="text-center">
+                                    <span class="text-info">{{ product.price | number_format(2, ',', ' ') }} €</span>
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th class="w-auto">Nom</th>
-            <th class="text-center">Quantité</th>
-            <th class="text-center">Categorie</th>
-            <th class="text-center">Prix</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td class="text-center">{{ product.quantity }}</td>
-                <td class="text-center">{{ product.category.name }}</td>
-                <td class="text-center">
-                    <span class="text-info">{{ product.price }}</span>
-                </td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
 {% endblock %}
