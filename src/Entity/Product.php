@@ -23,6 +23,7 @@ class Product
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
 
     public function getId(): ?int
