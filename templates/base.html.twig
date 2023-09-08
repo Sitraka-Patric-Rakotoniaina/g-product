@@ -15,8 +15,8 @@
         {% endblock %}
     </head>
     <body>
+    {{ include('element/navbar.html.twig') }}
         <div class="ms-3 me-3">
-            {{ include('element/navbar.html.twig') }}
             {% block body %}{% endblock %}
         </div>
     </body>
