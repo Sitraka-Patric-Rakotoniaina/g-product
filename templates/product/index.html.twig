@@ -41,8 +41,10 @@
                                     <span class="text-info">{{ product.price | number_format(2, ',', ' ') }} €</span>
                                 </td>
                                 <td>
-                                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                                    <a href="{{ path('app_product_delete', {'id': product.id}) }}">
+                                        Supprimer
+                                    </a>
+                                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">Editer</a>
                                 </td>
                             </tr>
                         {% else %}

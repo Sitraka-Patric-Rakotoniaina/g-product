@@ -7,7 +7,7 @@
         <div class="mx-auto col-10 col-md-8 col-lg-6">
             <h4 class="mt-5">Ajouter un nouveau produit</h4>
             <hr>
-            {{ include('product/form/_form.html.twig') }}
+            {{ include('product/form/_form.html.twig', {'button_label': 'Ajouter'}) }}
         </div>
     </div>
 {% endblock %}
