@@ -8,15 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('app_product_index') }}">
-                        Acceuil
-                    </a>
+                    <a class="nav-link {% if productPage is defined %} active{% endif %}" href="{{ path('app_product_index') }}">Produit</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_product_index') }}">Produit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_category_index') }}">Categorie</a>
+                    <a class="nav-link {% if categoryPage is defined %} active{% endif %}" href="{{ path('app_category_index') }}">Categorie</a>
                 </li>
             </ul>
             <form class="d-flex">
