@@ -10,13 +10,26 @@
                 <li class="nav-item">
                     <a class="nav-link {% if productPage is defined %} active{% endif %}" href="{{ path('app_product_index') }}">Produit</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link {% if categoryPage is defined %} active{% endif %}" href="{{ path('app_category_index') }}">Categorie</a>
                 </li>
+                {% endif %}
             </ul>
             <div class="d-flex">
-{#                <input class="form-control me-sm-2" type="search" placeholder="Search">#}
-                <a href="{{ path('app_login') }}"><button class="btn btn-secondary my-2 my-sm-0" type="submit">Se connecter</button></a>
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                        Déconnecter
+                    </button>
+                </a>
+                {% else %}
+                <a href="{{ path('app_login') }}">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                        Se connecter
+                    </button>
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>
