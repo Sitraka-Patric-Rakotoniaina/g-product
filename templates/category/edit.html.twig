@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une catégorie{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <h4 class="mt-5">Modifier une catégorie</h4>
+            <hr>
+            {{ include('category/form/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+        </div>
+    </div>
+{% endblock %}
