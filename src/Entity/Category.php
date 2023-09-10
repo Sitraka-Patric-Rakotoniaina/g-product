@@ -2,11 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GraphQl\Query;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource(
+    security: "is_granted('ROLE_ADMIN')",
+    graphQlOperations: [
+        new Query()
+    ]
+)]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
