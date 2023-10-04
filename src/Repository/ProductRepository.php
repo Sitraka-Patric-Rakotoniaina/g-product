@@ -34,16 +34,13 @@ class ProductRepository extends ServiceEntityRepository
         return $this->paginator->paginate($query, $searchData->page, 10);
     }
 
-    public function findProductsByCategory(?int $categoryId = null)
+    public function findProductsByCategory(array $categories = [])
     {
         $query = $this->createQueryBuilder('p')
             ->innerJoin('p.category', 'c');
-        if (!is_null($categoryId)) {
-            $query->andWhere('c.id =:categoryId')
-                ->setParameter('categoryId', $categoryId);
-        } else {
-            $query->andWhere('c.id =:categoryId')
-                ->setParameter('categoryId', 22);
+        if (!empty($categories)) {
+            $query->andWhere('c IN (:categories)')
+                ->setParameter('categories', $categories);
         }
         return $query->getQuery()->getResult();
     }

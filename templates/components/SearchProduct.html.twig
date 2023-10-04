@@ -1,13 +1,6 @@
 <div{{ attributes }} class="row">
     <div class="col-md-2">
-{#        {% include('product/form/search_form.html.twig') with {form: form} only %}#}
-        <input
-                type="number"
-                data-model="category"
-                placeholder="Results update as you type..."
-                class="form-control"
-        />
-        <button data-action="live#$render">Filtrer</button>
+        {% include('product/form/search_form.html.twig') with {form: form} only %}
     </div>
     <div data-loading="addClass(opacity-50)" class="col-md-10">
         <table class="table">
@@ -50,7 +43,7 @@
             </tbody>
         </table>
         <div class="mt-2">
-{#            {{ knp_pagination_render(products) }}#}
+{#            {{ knp_pagination_render(computed.products) }}#}
         </div>
     </div>
 </div>
