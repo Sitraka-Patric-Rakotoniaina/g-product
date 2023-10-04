@@ -41,6 +41,9 @@ class ProductRepository extends ServiceEntityRepository
         if (!is_null($categoryId)) {
             $query->andWhere('c.id =:categoryId')
                 ->setParameter('categoryId', $categoryId);
+        } else {
+            $query->andWhere('c.id =:categoryId')
+                ->setParameter('categoryId', 22);
         }
         return $query->getQuery()->getResult();
     }

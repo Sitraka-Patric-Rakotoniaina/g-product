@@ -6,61 +6,10 @@
     <div class="container">
         <div class="row">
             <h4 class="text-center">Liste des produits</h4>
-            <div class="row">
-                <div class="d-flex justify-content-end">
-                    <a href="{{ path('app_product_new') }}">
-                        <button class="btn btn-sm btn-secondary">Ajouter un nouveau produit</button>
-                    </a>
-                </div>
-            </div>
+{#            <twig:AddButton routeName="app_product_new" label="Ajouter un nouveau produit" />#}
+{#            <twig:RandomNumber />#}
             <hr class="mt-2">
-            <div class="row">
-                <div class="col-md-2">
-                    {% include('product/form/search_form.html.twig') with {form: searchForm} only %}
-                </div>
-                <div class="col-md-10">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th class="w-auto">Nom</th>
-                            <th class="text-center">Quantité</th>
-                            <th class="text-center">Catégorie</th>
-                            <th class="text-center">Prix</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for product in products %}
-                            <tr>
-                                <td>{{ product.id }}</td>
-                                <td>{{ product.name }}</td>
-                                <td class="text-center">{{ product.quantity }}</td>
-                                <td class="text-center">{{ product.category.name }}</td>
-                                <td class="text-center">
-                                    <span class="text-info">{{ product.price | number_format(2, ',', ' ') }} €</span>
-                                </td>
-                                <td>
-                                    <a href="{{ path('app_product_delete', {'id': product.id}) }}" style="text-decoration: none">
-                                        <i class="fas fa-trash alert-danger"></i>
-                                    </a>
-                                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" style="text-decoration: none">
-                                        <i class="fa fa-edit fa-md"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="5">Aucun donnée</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="mt-2">
-                        {{ knp_pagination_render(products) }}
-                    </div>
-                </div>
-            </div>
+{#            <twig:SearchProduct />#}
         </div>
     </div>
 {% endblock %}
