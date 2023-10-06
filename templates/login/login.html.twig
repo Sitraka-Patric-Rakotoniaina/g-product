@@ -13,12 +13,24 @@
             {% endif %}
             <div class="form-outline mb-4">
                 <label class="form-label" for="username">Email</label>
-                <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control" />
+                <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
             </div>
 
-            <div class="form-outline mb-4">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" name="_password" class="form-control" />
+            <label class="form-label" for="password">Password</label>
+            <div class="form-outline mb-4 input-group toggle-password-container">
+                <input
+                        type="password"
+                        id="password"
+                        name="_password"
+                        class="form-control"
+                        aria-describedby="show-password"
+                        {{ stimulus_controller('symfony/ux-toggle-password/toggle-password', {
+                            visibleLabel: '',
+                            hiddenLabel: '',
+                            hiddenIcon: '<i class="fa fa-eye-slash"></i>',
+                            visibleIcon: '<i class="fa fa-eye"></i>'
+                        }) }}
+                />
             </div>
             <button type="submit" class="btn btn-secondary">Se connecter</button>
         </form>

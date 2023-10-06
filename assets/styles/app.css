@@ -4,3 +4,20 @@ body {
 .opacity-50 {
     opacity: 0.5; /* Opacité de 50% (0.5) */
 }
+
+.toggle-password-container {
+    position: relative;
+}
+
+.toggle-password-container #password{
+    padding-right: 33px;
+}
+.toggle-password-container button {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 5px;
+    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+}
